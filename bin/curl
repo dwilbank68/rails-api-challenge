@@ -1,0 +1,95 @@
+
+get_monsters_by_name(){
+    curl -i \
+    -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    http://localhost:3000/monsters?sort=name
+}
+get_monsters_by_type(){
+    curl -i \
+    -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    http://localhost:3000/monsters?sort=_type
+}
+get_monsters_by_weakness(){
+    curl -i \
+    -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    http://localhost:3000/monsters?sort=weakness
+}
+monster1_create(){
+    curl -v -X POST \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -d @bin/monster1.json \
+        http://localhost:3000/monsters
+}
+team1_create(){
+    curl -v -X POST \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -d @bin/team1.json \
+        http://localhost:3000/teams
+}
+team1_add_monster(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/3/add_monster/19
+}
+
+team1_add_monster_unauthorized(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/3/add_monster/26
+}
+
+team1_add_monster_bad_team_id(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/33333/add_monster/26
+}
+
+team1_add_monster_bad_monster_id(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/1/add_monster/899999
+}
+
+team1_remove_monster(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/3/remove_monster/2
+}
+
+team1_remove_monster_bad_monster_id(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/3/remove_monster/22454
+}
+
+team1_remove_monster_bad_team_id(){
+    curl -X PATCH \
+        -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        http://localhost:3000/teams/454543/remove_monster/2
+}
+
+$1
