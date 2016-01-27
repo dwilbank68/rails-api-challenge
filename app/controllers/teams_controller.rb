@@ -32,6 +32,15 @@ class TeamsController < ApplicationController
     team_id = params[:team_id].to_i
     monster_id = params[:monster_id].to_i
 
+    if params_valid?(team_id, monster_id)
+      monster.team_id = team_id
+      if monster.save
+        render json: {message:"added to team #{team.name}"}, status: 200
+      else
+        render json: monster.errors, status: 422
+      end
+    end
+
     if !valid_monster_id(monster_id)
       render json: {message:"That is not a valid monster"}, status:403
       return
@@ -42,9 +51,8 @@ class TeamsController < ApplicationController
       true
     end
 
-    team = Team.find_by_id(team_id)
-    monster = Monster.find_by_id(monster_id)
-
+    # team = Team.find_by_id(team_id)
+    # monster = Monster.find_by_id(monster_id)
 
     if !team_belongs_to_user(team)
       render json: {message:"That is not your team"}, status:403
@@ -53,12 +61,12 @@ class TeamsController < ApplicationController
     elsif !team_has_space(team)
       render json: {message:"That team already has #{MAX_MONSTER_COUNT_PER_TEAM} monsters."}, status: 403
     else
-      monster.team_id = team_id
-      if monster.save
-        render json: {message:"added to team #{team.name}"}, status: 200
-      else
-        render json: monster.errors, status: 422
-      end
+      # monster.team_id = team_id
+      # if monster.save
+      #   render json: {message:"added to team #{team.name}"}, status: 200
+      # else
+      #   render json: monster.errors, status: 422
+      # end
     end
 
   end
@@ -103,6 +111,10 @@ class TeamsController < ApplicationController
 
   def team_params
     params.require(:team).permit(:name)
+  end
+
+  def params_valid?(team_id, monster_id)
+
   end
 
   def valid_monster_id(monster_id)
