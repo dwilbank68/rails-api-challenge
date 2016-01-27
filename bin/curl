@@ -47,7 +47,7 @@ team1_add_monster(){
         -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
         -H "Accept: application/json" \
         -H "Content-Type: application/json" \
-        http://localhost:3000/teams/3/add_monster/19
+        http://localhost:3000/teams/3/add_monster/4
 }
 
 team1_add_monster_unauthorized(){
