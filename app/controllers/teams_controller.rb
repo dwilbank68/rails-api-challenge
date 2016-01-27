@@ -32,7 +32,9 @@ class TeamsController < ApplicationController
     team_id = params[:team_id].to_i
     monster_id = params[:monster_id].to_i
 
-    if params_valid?(team_id, monster_id)
+    query = params_valid?(team_id, monster_id)
+
+    if query.valid?
       monster.team_id = team_id
       if monster.save
         render json: {message:"added to team #{team.name}"}, status: 200
@@ -41,15 +43,15 @@ class TeamsController < ApplicationController
       end
     end
 
-    if !valid_monster_id(monster_id)
-      render json: {message:"That is not a valid monster"}, status:403
-      return
-    elsif !valid_team_id(team_id)
-      render json: {message:"That is not a valid team"}, status:403
-      return
-    else
-      true
-    end
+    # if !valid_monster_id(monster_id)
+    #   render json: {message:"That is not a valid monster"}, status:403
+    #   return
+    # elsif !valid_team_id(team_id)
+    #   render json: {message:"That is not a valid team"}, status:403
+    #   return
+    # else
+    #   true
+    # end
 
     # team = Team.find_by_id(team_id)
     # monster = Monster.find_by_id(monster_id)
@@ -114,7 +116,18 @@ class TeamsController < ApplicationController
   end
 
   def params_valid?(team_id, monster_id)
-
+    query = {}
+    if !valid_monster_id(monster_id)
+      query.message = "That is not a valid monster"
+      query.status = 403
+      query.valid? = false
+    elsif !valid_team_id(team_id)
+      query.message = "That is not a valid team"
+      query.status = 403
+      query.valid? = false
+    else
+      query.valid? = true
+    end
   end
 
   def valid_monster_id(monster_id)
