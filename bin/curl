@@ -79,7 +79,7 @@ team1_remove_monster(){
         -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" \
         -H "Accept: application/json" \
         -H "Content-Type: application/json" \
-        http://localhost:3000/teams/3/remove_monster/2
+        http://localhost:3000/teams/3/remove_monster/4
 }
 
 team1_remove_monster_bad_monster_id(){
