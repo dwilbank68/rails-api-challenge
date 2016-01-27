@@ -97,7 +97,7 @@ class TeamsController < ApplicationController
     end
   end
 
-  ##################################################################
+
 
   private
 

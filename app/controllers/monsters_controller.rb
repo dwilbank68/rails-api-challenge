@@ -67,17 +67,5 @@ class MonstersController < ApplicationController
 
 end
 
-#Davy
-#3472ad005505541ff3f23d2bac20c55b
 
-#Sharky
-#3473d82fb3df8bc2bc9080faa4021398
 
-#Get Monsters
-#curl -i         http://localhost:3000/monsters?sort=_type -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" -H "Accept: application/json"
-
-#Create Monster
-#curl -i -X POST http://localhost:3000/monsters -d name=Jojo -d power=eats paper -d _type=earth"      -H "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" -H "Accept: application/json"
-
-#GET TEAMS
-#curl http://localhost:3000/teams -iH "Authorization: Token token=3472ad005505541ff3f23d2bac20c55b" -H "Accept: application/json"

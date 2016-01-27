@@ -1,3 +1,9 @@
+#Davy's token
+#3472ad005505541ff3f23d2bac20c55b
+
+#Sharky's token
+#3473d82fb3df8bc2bc9080faa4021398
+
 
 get_monsters_by_name(){
     curl -i \
