@@ -33,6 +33,8 @@ group :development, :test do
   gem 'pry-nav'
   gem 'hirb'
   gem 'awesome_print'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
