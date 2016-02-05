@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth'
 gem 'omniauth-facebook'#, '1.4.0'
 
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
@@ -35,6 +37,9 @@ group :development, :test do
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', require: false
+  gem 'spring'
 end
 
 group :development do
@@ -43,7 +48,5 @@ group :development do
   gem 'quiet_assets'
   gem "better_errors"
   gem "binding_of_caller" #if you use better_errors
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
 

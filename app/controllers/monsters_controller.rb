@@ -2,7 +2,6 @@ MAX_MONSTER_COUNT_PER_USER = 20
 
 class MonstersController < ApplicationController
 
-  # before_action :authenticate
   before_action :get_user
 
   def index
@@ -38,6 +37,7 @@ class MonstersController < ApplicationController
   protected
 
   def get_user
+    puts "request.headers['Authorization'] is #{request.headers["Authorization"]}"
     token = request
                 .headers["Authorization"]
                 .split('=')

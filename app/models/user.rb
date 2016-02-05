@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
     has_many :teams
     has_many :monsters
 
+    validates :name,
+              :presence => true,
+              :length => {:in => 2..25},
+              :uniqueness => {:case_sensitive => false}
+
     private
 
     def set_auth_token
