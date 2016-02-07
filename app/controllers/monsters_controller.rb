@@ -17,7 +17,7 @@ class MonstersController < ApplicationController
 
   def create
     if max_monsters?
-      render json: "You have #{@user.monsters.count} monsters out of #{MAX_MONSTER_COUNT_PER_USER} total allowed.", status: 403
+      render json: {message:"You have #{@user.monsters.count} monsters out of #{MAX_MONSTER_COUNT_PER_USER} total allowed."}, status: 403
     else
       monster = Monster.new(monster_params)
       monster.user_id = @user.id
@@ -37,23 +37,20 @@ class MonstersController < ApplicationController
   protected
 
   def get_user
-    puts "request.headers['Authorization'] is #{request.headers["Authorization"]}"
+    # puts "request.headers['Authorization'] is #{request.headers["Authorization"]}"
     token = request
                 .headers["Authorization"]
                 .split('=')
                 .last
     if @user = User.find_by(auth_token: token)
-      puts @user.name
+      #puts @user.name
     else
       render_unauthorized
     end
   end
 
 
-  def render_unauthorized
-    self.headers['WWW-Authenticate'] = 'Token realm="Monsters"'
-    render json: 'Bad credentials', status: 401
-  end
+
 
   private
 

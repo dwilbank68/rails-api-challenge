@@ -146,7 +146,7 @@ class TeamsController < ApplicationController
                 .split('=')
                 .last
     if @user = User.find_by(auth_token: token)
-      puts @user.name
+      # puts @user.name
     else
       render_unauthorized
     end

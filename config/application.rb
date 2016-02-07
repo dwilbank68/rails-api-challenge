@@ -32,3 +32,8 @@ module Challenge
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+def render_unauthorized
+  self.headers['WWW-Authenticate'] = 'Token realm="Monsters"'
+  render json: {message:"Bad credentials"}, status: 401
+end

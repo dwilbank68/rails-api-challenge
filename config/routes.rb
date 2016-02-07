@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'teams' => 'teams#index'
 
-  patch 'teams/:team_id/add_monster/:monster_id' => 'teams#add_monster'
+  post 'teams/:team_id/add_monster/:monster_id' => 'teams#add_monster'
 
-  patch 'teams/:team_id/remove_monster/:monster_id'  => 'teams#remove_monster'
+  delete 'teams/:team_id/remove_monster/:monster_id'  => 'teams#remove_monster'
 
   get 'monsters' => 'monsters#index'
 
